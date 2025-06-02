@@ -1,0 +1,46 @@
+# Network Protocol Analysis Report
+
+## Environment
+- OS: Kali Linux
+- Tool: Wireshark v4.x
+
+---
+
+## Traffic Generation Summary
+1. **ICMP traffic** using `ping google.com`
+2. **DNS + TCP + HTTPS traffic** by visiting `https://www.youtube.com` in Firefox
+
+---
+
+## Protocols Identified
+1. **ICMP**
+   - Packet Type: Echo Request/Reply
+   - Destination: 142.250.190.xxx (Google IP)
+   - Filter Used: `icmp`
+
+2. **DNS**
+   - Resolved `youtube.com` to IP addresses
+   - Filter Used: `dns`
+
+3. **TLS (HTTPS)**
+   - Encrypted YouTube connection
+   - Observed TLS handshake (Client Hello, Server Hello)
+   - Filter Used: `tls`
+
+4. **TCP**
+   - Verified 3-way handshake (SYN, SYN-ACK, ACK)
+   - Used for HTTPS communication
+
+---
+
+## Screenshot Summary
+Captured key steps from Wireshark interface selection to protocol filtering, ping, web browsing, and saving.
+
+---
+
+## Notes
+- HTTPS traffic was encrypted; payload not visible.
+- Proper packet layering observed: Ethernet > IP > TCP > TLS
+- Used filters to isolate each protocol efficiently.
+
+---
